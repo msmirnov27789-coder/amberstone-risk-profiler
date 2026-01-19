@@ -224,130 +224,194 @@ def build_pdf_bytes(results: dict, firm_name: str = "Amberstone Capital", logo_f
 st.markdown(
     f"""
     <style>
-      /* =========================================================
-   GLOBAL BASE
-   ========================================================= */
-html, body {{
-  background: #0e1117;
-}}
+      .stApp {{
+        background-color: {BG};
+        color: {TEXT};
+      }}
 
-.stApp {{
-  background: #0e1117;
-  color: {TEXT};
-}}
+      /* Show top edge of header reliably */
+      .block-container {{
+        max-width: 1040px;
+        padding-top: 3.0rem !important;
+        padding-left: 1.2rem !important;
+        padding-right: 1.2rem !important;
+        margin: 0 auto;
+      }}
 
-.block-container {{
-  max-width: 1040px;
-  padding-top: 2rem !important;
-  margin: 0 auto;
-}}
+      html, body, p, div, span, label, li {{
+        color: {TEXT};
+      }}
+      .stCaption, small {{
+        color: {MUTED} !important;
+      }}
 
-/* =========================================================
-   HEADER
-   ========================================================= */
-.amber-header {{
-  background: #121721;
-  border: 1px solid #1f2430;
-  border-radius: 18px;
-  padding: 1.35rem;
-  margin-bottom: 0.4rem;
-}}
+      /* IMPORTANT: Streamlit divider from st.markdown('---') is a <hr> inside stMarkdown.
+         Make it VERY tight. This is the correct selector that actually works. */
+      div[data-testid="stMarkdown"] > hr {{
+        border: none;
+        border-top: 1px solid {DIVIDER};
+        margin-top: 0.10rem !important;
+        margin-bottom: 0.10rem !important;
+      }}
 
-.accent-line {{
-  height: 3px;
-  background: #D2A679;
-  margin-top: 0.8rem;
-  border-radius: 99px;
-}}
+      .amber-header {{
+        background: {PANEL};
+        border: 1px solid {BORDER};
+        border-radius: 18px;
+        padding: 1.35rem 1.35rem;
+        margin-top: 0.2rem;
+        margin-bottom: 0.35rem;   /* tighter to nav */
+      }}
 
-/* =========================================================
-   CARDS
-   ========================================================= */
-.card {{
-  background: #0f1520;
-  border: 1px solid #1f2430;
-  border-radius: 16px;
-  padding: 1.1rem;
-}}
+      .amber-title {{
+        color: {TEXT};
+        font-size: 2.4rem;
+        font-weight: 750;
+        margin: 0;
+        line-height: 1.12;
+      }}
 
-/* =========================================================
-   FORCE QUESTION LABELS (PREVENT PALE TEXT)
-   Applies to radio / selectbox / checkbox questions
-   ========================================================= */
-label[data-testid="stWidgetLabel"] p {{
-  color: {TEXT} !important;
-  opacity: 1 !important;
-  font-weight: 600 !important;
-}}
+      .amber-subtitle {{
+        color: {MUTED};
+        font-size: 1.15rem;
+        margin-top: 0.45rem;
+      }}
 
-/* =========================================================
-   RADIO ANSWERS
-   ========================================================= */
-div[data-testid="stRadio"] div[role="radiogroup"] {{
-  justify-content: center;
-}}
+      .accent-line {{
+        height: 3px;
+        width: 100%;
+        background: {ACCENT};
+        border-radius: 999px;
+        margin-top: 0.8rem;
+        opacity: 0.85;
+      }}
 
-div[data-testid="stRadio"] label span {{
-  color: {TEXT} !important;
-  font-size: 1.05rem !important;
-  opacity: 1 !important;
-}}
+      .card {{
+        background: {PANEL_2};
+        border: 1px solid {BORDER};
+        border-radius: 16px;
+        padding: 1.1rem 1.1rem;
+      }}
 
-/* =========================================================
-   SELECTBOX / DROPDOWN – FIX MOBILE + LIGHT THEME
-   ========================================================= */
+      /* Summary cards */
+      .summary-grid {{
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }}
+      @media (max-width: 900px) {{
+        .summary-grid {{ grid-template-columns: 1fr; }}
+      }}
+      .summary-card {{
+        background: {PANEL};
+        border: 1px solid {BORDER};
+        border-radius: 16px;
+        padding: 1rem 1rem;
+      }}
+      .summary-label {{
+        color: {MUTED};
+        font-size: 0.95rem;
+        margin-bottom: 0.35rem;
+      }}
+      .summary-value {{
+        color: {TEXT};
+        font-size: 1.55rem;
+        font-weight: 700;
+        line-height: 1.25;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        white-space: normal;
+      }}
 
-/* Closed selectbox (value + placeholder) */
-div[data-testid="stSelectbox"] div[role="button"] {{
-  background: #ffffff !important;
-  color: #111111 !important;
-  border: 1px solid #cfcfcf !important;
-}}
+      /* Questionnaire: questions > answers */
+      div[data-testid="stRadio"] > label,
+      div[data-testid="stSelectbox"] > label,
+      div[data-testid="stCheckbox"] > label {{
+        font-size: 1.90rem !important;
+        font-weight: 700 !important;
+        line-height: 1.99 !important;
+      }}
+      div[data-testid="stRadio"] div[role="radiogroup"] {{
+        justify-content: center;
+      }}
+      div[data-testid="stRadio"] div[role="radiogroup"] label span {{
+        font-size: 1.10rem !important;
+        font-weight: 550 !important;
+        white-space: nowrap !important;
+      }}
+      div[data-testid="stSelectbox"] div[role="button"] {{
+        font-size: 1.10rem !important;
+      }}
 
-/* Placeholder text */
-div[data-testid="stSelectbox"] div[role="button"] span {{
-  color: #111111 !important;
-  opacity: 1 !important;
-}}
+      /* Nav buttons: compact and subtle */
+      .navbtn button {{
+        background: transparent !important;
+        color: {TEXT} !important;
+        border: 1px solid {BORDER} !important;
+        border-radius: 12px !important;
+        padding-top: 0.35rem !important;
+        padding-bottom: 0.35rem !important;
+      }}
+      .navbtn button:hover {{
+        background: {PANEL} !important;
+      }}
 
-/* Dropdown menu container */
-div[role="listbox"] {{
-  background: #ffffff !important;
-  color: #111111 !important;
-  border: 1px solid #cfcfcf !important;
-}}
+      /* Primary buttons (submit/download) */
+      button[kind="primary"] {{
+        background-color: #1f2a44 !important;
+        color: {TEXT} !important;
+        border: 1px solid #2f3b5c !important;
+        border-radius: 12px !important;
+      }}
+      button[kind="primary"]:hover {{
+        background-color: #26335a !important;
+      }}
 
-/* Dropdown options + ALL nested text */
-div[role="option"], div[role="option"] * {{
-  background: #ffffff !important;
-  color: #111111 !important;
-  opacity: 1 !important;
-}}
 
-/* Hover state */
-div[role="option"]:hover, div[role="option"]:hover * {{
-  background: #f2f2f2 !important;
-  color: #111111 !important;
-  opacity: 1 !important;
-}}
+      /* --- Responsive header (Option 2: mobile-friendly but consistent branding) --- */
+      .amber-header .header-row {{
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: nowrap;
+      }}
 
-/* =========================================================
-   INPUTS (FUTURE-PROOFING)
-   ========================================================= */
-input, textarea {{
-  background: #ffffff !important;
-  color: #111111 !important;
-}}
+      .amber-header .brand-logo {{
+        width: clamp(110px, 18vw, 145px);
+        min-width: 110px;
+        height: auto;
+        flex: 0 0 auto;
+      }}
 
-/* =========================================================
-   DIVIDER – VERY TIGHT
-   ========================================================= */
-div[data-testid="stMarkdown"] > hr {{
-  border: none;
-  border-top: 1px solid #2a2f3a;
-  margin-top: 0.10rem !important;
-  margin-bottom: 0.10rem !important;
-}}
+      .amber-header .brand-text {{
+        flex: 1 1 auto;
+        min-width: 0;
+      }}
+
+      .amber-header .brand-subtitle {{
+        white-space: normal;
+      }}
+
+      @media (max-width: 600px) {{
+        .amber-header {{
+          padding: 1.1rem 1.1rem;
+        }}
+        .amber-header .header-row {{
+          gap: 12px;
+        }}
+        .amber-header .brand-logo {{
+          width: 120px;
+          min-width: 120px;
+        }}
+        .amber-title {{
+          font-size: 1.85rem;
+          line-height: 1.1;
+        }}
+        .amber-subtitle {{
+          font-size: 1.0rem;
+          margin-top: 0.25rem;
+        }}
+      }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -863,4 +927,3 @@ st.caption(
     "This application provides risk profiling information, not investment advice. "
     "Final suitability decisions rest with the adviser."
 )
-
