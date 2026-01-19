@@ -412,6 +412,61 @@ st.markdown(
           margin-top: 0.25rem;
         }}
       }}
+            /* =========================================================
+         FORCE APP LOOK CONSISTENT REGARDLESS OF BROWSER THEME
+         (prevents white/pale text on white backgrounds)
+         ========================================================= */
+
+      :root {{
+        color-scheme: dark;
+      }}
+
+      /* Selectbox closed field: force dark background and light text */
+      div[data-testid="stSelectbox"] div[role="button"] {{
+        background: {PANEL_2} !important;
+        color: {TEXT} !important;
+        border: 1px solid {BORDER} !important;
+      }}
+
+      /* Placeholder/value inside selectbox */
+      div[data-testid="stSelectbox"] div[role="button"] span {{
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* Dropdown list container */
+      div[role="listbox"] {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+        border: 1px solid {BORDER} !important;
+      }}
+
+      /* Dropdown options + nested text */
+      div[role="option"], div[role="option"] * {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* Hover option */
+      div[role="option"]:hover, div[role="option"]:hover * {{
+        background: {PANEL_2} !important;
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* Keep widget question labels bright (prevents “pale” questions) */
+      label[data-testid="stWidgetLabel"] p {{
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* If any text inputs ever get added, keep them consistent too */
+      input, textarea {{
+        background: {PANEL_2} !important;
+        color: {TEXT} !important;
+        border: 1px solid {BORDER} !important;
+      }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -927,3 +982,4 @@ st.caption(
     "This application provides risk profiling information, not investment advice. "
     "Final suitability decisions rest with the adviser."
 )
+
