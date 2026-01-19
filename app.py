@@ -1,4 +1,4 @@
-﻿# app.py
+# app.py
 # Amberstone – Client Risk Profiler (Theme #1: Dark / Institutional)
 # COMPLETE FULL APP (no missing sections)
 #
@@ -366,6 +366,52 @@ st.markdown(
       button[kind="primary"]:hover {{
         background-color: #26335a !important;
       }}
+
+
+      /* --- Responsive header (Option 2: mobile-friendly but consistent branding) --- */
+      .amber-header .header-row {{
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: nowrap;
+      }}
+
+      .amber-header .brand-logo {{
+        width: clamp(110px, 18vw, 145px);
+        min-width: 110px;
+        height: auto;
+        flex: 0 0 auto;
+      }}
+
+      .amber-header .brand-text {{
+        flex: 1 1 auto;
+        min-width: 0;
+      }}
+
+      .amber-header .brand-subtitle {{
+        white-space: normal;
+      }}
+
+      @media (max-width: 600px) {{
+        .amber-header {{
+          padding: 1.1rem 1.1rem;
+        }}
+        .amber-header .header-row {{
+          gap: 12px;
+        }}
+        .amber-header .brand-logo {{
+          width: 120px;
+          min-width: 120px;
+        }}
+        .amber-title {{
+          font-size: 1.85rem;
+          line-height: 1.1;
+        }}
+        .amber-subtitle {{
+          font-size: 1.0rem;
+          margin-top: 0.25rem;
+        }}
+      }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -376,7 +422,7 @@ st.markdown(
 # ============================================================
 logo_b64 = load_logo_base64(UI_LOGO_FILE)
 logo_html = (
-    f'<img src="data:image/png;base64,{logo_b64}" style="width:145px; height:auto;" />'
+    f"<img class='brand-logo' src='data:image/png;base64,{logo_b64}' style='height:auto;' />"
     if logo_b64
     else '<div style="color:#fff; font-weight:700;">[Logo_white.png missing]</div>'
 )
@@ -387,11 +433,11 @@ logo_html = (
 st.markdown(
     f"""
     <div class="amber-header">
-      <div style="display:flex; align-items:center; gap:18px;">
+      <div class="header-row">
         <div>{logo_html}</div>
-        <div>
+        <div class="brand-text">
           <div class="amber-title">Amberstone – Client Risk Profiler</div>
-          <div class="amber-subtitle">
+          <div class="amber-subtitle brand-subtitle">
             Internal risk-profiling tool (Risk Attitude + Capacity for Loss). Outputs maximum strategic allocation caps only.
           </div>
         </div>
