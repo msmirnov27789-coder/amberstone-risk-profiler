@@ -412,6 +412,49 @@ st.markdown(
           margin-top: 0.25rem;
         }}
       }}
+/* ===== Fix selectbox & dropdown readability across light/dark ===== */
+
+/* Closed selectbox (selected value + placeholder) */
+div[data-testid="stSelectbox"] div[role="button"] {
+  color: #111 !important;
+  background: #fff !important;
+  border: 1px solid #ccc !important;
+}
+
+/* Placeholder text inside selectbox */
+div[data-testid="stSelectbox"] div[role="button"] span {
+  color: #111 !important;
+}
+
+/* Dropdown menu container */
+div[role="listbox"] {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #ccc !important;
+}
+
+/* Individual dropdown options */
+div[role="option"] {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* Hover state */
+div[role="option"]:hover {
+  background: #f2f2f2 !important;
+  color: #111 !important;
+}
+
+/* Text inputs (future-proofing) */
+input, textarea {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* Keep checkbox & radio labels readable */
+label, label span {
+  color: inherit;
+}
     </style>
     """,
     unsafe_allow_html=True,
