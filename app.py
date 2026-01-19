@@ -469,6 +469,77 @@ st.markdown(
         border: 1px solid {BORDER} !important;
       }}
 
+
+
+      /* ===== Streamlit Selectbox (BaseWeb) - force dark dropdown + readable option text ===== */
+
+      /* The select control itself */
+      div[data-baseweb="select"] > div {{
+        background: {PANEL_2} !important;
+        color: {TEXT} !important;
+        border: 1px solid {BORDER} !important;
+      }}
+
+      /* Placeholder + selected value */
+      div[data-baseweb="select"] span {{
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* The dropdown/popup container */
+      div[data-baseweb="popover"] {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+      }}
+
+      /* The menu list background */
+      ul[data-baseweb="menu"] {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+      }}
+
+      /* Each option row + ALL nested text inside */
+      ul[data-baseweb="menu"] li,
+      ul[data-baseweb="menu"] li * {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* Hover */
+      ul[data-baseweb="menu"] li:hover,
+      ul[data-baseweb="menu"] li:hover * {{
+        background: {PANEL_2} !important;
+        color: {TEXT} !important;
+        opacity: 1 !important;
+      }}
+
+      /* ===== Force nav buttons to stay dark and readable (all states) ===== */
+      .navbtn button {{
+        background: {PANEL_2} !important;
+        color: {TEXT} !important;
+        border: 1px solid {BORDER} !important;
+      }}
+
+      .navbtn button:hover {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+      }}
+
+      .navbtn button:focus,
+      .navbtn button:active {{
+        background: {PANEL} !important;
+        color: {TEXT} !important;
+        outline: none !important;
+        box-shadow: 0 0 0 2px rgba(210, 166, 121, 0.35) !important;
+      }}
+
+      .navbtn button:disabled {{
+        background: {PANEL_2} !important;
+        color: rgba(242,242,242,0.55) !important;
+        border: 1px solid {BORDER} !important;
+      }}
+
 </style>
     """,
     unsafe_allow_html=True,
