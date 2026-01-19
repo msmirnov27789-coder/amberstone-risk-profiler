@@ -455,6 +455,45 @@ input, textarea {{
 label, label span {{
   color: inherit;
 }}
+/* ===== FORCE selectbox dropdown readability (esp. mobile/light theme) ===== */
+@media (prefers-color-scheme: light) {{
+  /* closed selectbox */
+  div[data-testid="stSelectbox"] div[role="button"] {{
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #cfcfcf !important;
+  }}
+
+  /* dropdown container */
+  div[role="listbox"] {{
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #cfcfcf !important;
+  }}
+
+  /* option text inside dropdown */
+  div[role="option"], div[role="option"] * {{
+    background: #ffffff !important;
+    color: #111111 !important;
+    opacity: 1 !important;
+  }}
+
+  /* hover */
+  div[role="option"]:hover {{
+    background: #f2f2f2 !important;
+    color: #111111 !important;
+  }}
+}}
+/* ===== FORCE widget question labels to be bright (radio/selectbox/checkbox) ===== */
+label[data-testid="stWidgetLabel"] p {{
+  color: {TEXT} !important;
+  opacity: 1 !important;
+}}
+label[data-testid="stWidgetLabel"] p {{
+  color: {TEXT} !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}}
     </style>
     """,
     unsafe_allow_html=True,
