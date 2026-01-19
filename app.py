@@ -412,7 +412,8 @@ st.markdown(
           margin-top: 0.25rem;
         }}
       }}
-            /* =========================================================
+    
+      /* =========================================================
          FORCE APP LOOK CONSISTENT REGARDLESS OF BROWSER THEME
          (prevents white/pale text on white backgrounds)
          ========================================================= */
@@ -467,7 +468,8 @@ st.markdown(
         color: {TEXT} !important;
         border: 1px solid {BORDER} !important;
       }}
-    </style>
+
+</style>
     """,
     unsafe_allow_html=True,
 )
@@ -982,4 +984,3 @@ st.caption(
     "This application provides risk profiling information, not investment advice. "
     "Final suitability decisions rest with the adviser."
 )
-
