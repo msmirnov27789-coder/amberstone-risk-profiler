@@ -538,19 +538,19 @@ def category_from_score(score_0_100: int) -> str:
     if score_0_100 <= 56:
         return "Balanced (45–56)"
     if score_0_100 <= 67:
-        return "Moderately Adventurous (57–67)"
+        return "Moderately Venturesome  (57–67)"
     if score_0_100 <= 79:
-        return "Adventurous (68–79)"
-    return "Very Adventurous (80–100)"
+        return "Venturesome (68–79)"
+    return "Very Venturesome (80–100)"
 
 MAX_POLICY = {
     "Very Cautious (0–25)": {"max_equity": 0,  "max_sukuk": 100, "max_alternatives": 0},
     "Cautious (26–33)": {"max_equity": 20, "max_sukuk": 80,  "max_alternatives": 0},
     "Moderately Cautious (34–44)": {"max_equity": 30, "max_sukuk": 70, "max_alternatives": 0},
     "Balanced (45–56)": {"max_equity": 40, "max_sukuk": 60, "max_alternatives": 0},
-    "Moderately Adventurous (57–67)": {"max_equity": 60, "max_sukuk": 35, "max_alternatives": 5},
-    "Adventurous (68–79)": {"max_equity": 70, "max_sukuk": 20, "max_alternatives": 10},
-    "Very Adventurous (80–100)": {"max_equity": 70, "max_sukuk": 0, "max_alternatives": 30},
+    "Moderately Venturesome (57–67)": {"max_equity": 60, "max_sukuk": 35, "max_alternatives": 5},
+    "Venturesome (68–79)": {"max_equity": 70, "max_sukuk": 20, "max_alternatives": 10},
+    "Very Venturesome (80–100)": {"max_equity": 70, "max_sukuk": 0, "max_alternatives": 30},
 }
 
 BAND_ORDER = [
@@ -558,9 +558,9 @@ BAND_ORDER = [
     "Cautious (26–33)",
     "Moderately Cautious (34–44)",
     "Balanced (45–56)",
-    "Moderately Adventurous (57–67)",
-    "Adventurous (68–79)",
-    "Very Adventurous (80–100)",
+    "Moderately Venturesome (57–67)",
+    "Venturesome (68–79)",
+    "Very Venturesome (80–100)",
 ]
 
 def band_at_or_below(current_band: str, max_band: str) -> str:
@@ -613,7 +613,7 @@ def compute_results(inputs: dict) -> dict:
     CAPACITY_MAX_BAND = {
         "Low capacity for loss": "Moderately Cautious (34–44)",
         "Medium capacity for loss": "Balanced (45–56)",
-        "High capacity for loss": "Very Adventurous (80–100)",
+        "High capacity for loss": "Very Venturesome (80–100)",
     }
     capacity_max_allowed_band = CAPACITY_MAX_BAND[capacity_band]
 
